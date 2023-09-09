@@ -10,8 +10,12 @@ function App() {
 
   const getresult = async (searchTerm) => {
     const result = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`)
-    setMeals(result.data.meals)
-    console.log(result.data.meals)
+    if(result.data.meals){
+      setMeals(result.data.meals)
+    }
+    else{
+      alert(`No meal found with ${searchTerm} - Try something else!!`)
+    }
   }
 
   return (
